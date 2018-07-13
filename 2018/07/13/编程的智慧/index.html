@@ -16,13 +16,14 @@
 
 
 <meta name="description" content="本文引自王垠的博客，仅做备份，请支持原作者。原文链接：编程的智慧  编程是一种创造性的工作，是一门艺术。精通任何一门艺术，都需要很多的练习和领悟，所以这里提出的“智慧”，并不是号称一天瘦十斤的减肥药，它并不能代替你自己的勤奋。然而由于软件行业喜欢标新立异，喜欢把简单的事情搞复杂，我希望这些文字能给迷惑中的人们指出一些正确的方向，让他们少走一些弯路，基本做到一分耕耘一分收获。">
+<meta name="keywords" content="编程思想,代码规范">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编程的智慧">
 <meta property="og:url" content="www.fly-mc.com/2018/07/13/编程的智慧/index.html">
 <meta property="og:site_name" content="闵晨的博客">
 <meta property="og:description" content="本文引自王垠的博客，仅做备份，请支持原作者。原文链接：编程的智慧  编程是一种创造性的工作，是一门艺术。精通任何一门艺术，都需要很多的练习和领悟，所以这里提出的“智慧”，并不是号称一天瘦十斤的减肥药，它并不能代替你自己的勤奋。然而由于软件行业喜欢标新立异，喜欢把简单的事情搞复杂，我希望这些文字能给迷惑中的人们指出一些正确的方向，让他们少走一些弯路，基本做到一分耕耘一分收获。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-13T09:56:56.523Z">
+<meta property="og:updated_time" content="2018-07-13T10:14:08.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编程的智慧">
 <meta name="twitter:description" content="本文引自王垠的博客，仅做备份，请支持原作者。原文链接：编程的智慧  编程是一种创造性的工作，是一门艺术。精通任何一门艺术，都需要很多的练习和领悟，所以这里提出的“智慧”，并不是号称一天瘦十斤的减肥药，它并不能代替你自己的勤奋。然而由于软件行业喜欢标新立异，喜欢把简单的事情搞复杂，我希望这些文字能给迷惑中的人们指出一些正确的方向，让他们少走一些弯路，基本做到一分耕耘一分收获。">
@@ -131,8 +132,6 @@
                         
                             <li><a href="/archives">所有文章</a></li>
                         
-                            <li><a href="/categories">分类</a></li>
-                        
                             <li><a href="/tags">标签云</a></li>
                         
                         </ul>
@@ -186,8 +185,6 @@
                 
                     <li><a href="/archives">所有文章</a></li>
                 
-                    <li><a href="/categories">分类</a></li>
-                
                     <li><a href="/tags">标签云</a></li>
                 
                 <div class="clearfix"></div>
@@ -237,8 +234,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/编程/">编程</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码规范/">代码规范</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程思想/">编程思想</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -251,7 +256,8 @@
 </blockquote>
 <p>编程是一种创造性的工作，是一门艺术。精通任何一门艺术，都需要很多的练习和领悟，所以这里提出的“智慧”，并不是号称一天瘦十斤的减肥药，它并不能代替你自己的勤奋。然而由于软件行业喜欢标新立异，喜欢把简单的事情搞复杂，我希望这些文字能给迷惑中的人们指出一些正确的方向，让他们少走一些弯路，基本做到一分耕耘一分收获。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
-<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
 <h2 id="反复推敲代码"><a href="#反复推敲代码" class="headerlink" title="反复推敲代码"></a>反复推敲代码</h2><p>有些人喜欢炫耀自己写了多少多少万行的代码，仿佛代码的数量是衡量编程水平的标准。然而，如果你总是匆匆写出代码，却从来不回头去推敲，修改和提炼，其实是不可能提高编程水平的。你会制造出越来越多平庸甚至糟糕的代码。在这种意义上，很多人所谓的“工作经验”，跟他代码的质量其实不一定成正比。如果有几十年的工作经验，却从来不回头去提炼和反思自己的代码，那么他也许还不如一个只有一两年经验，却喜欢反复推敲，仔细领悟的人。</p>
 <p>有位文豪说得好：“看一个作家的水平，不是看他发表了多少文字，而要看他的废纸篓里扔掉了多少。” 我觉得同样的理论适用于编程。好的程序员，他们删掉的代码，比留下来的还要多很多。如果你看见一个人写了很多代码，却没有删掉多少，那他的代码一定有很多垃圾。</p>
 <p>就像文学作品一样，代码是不可能一蹴而就的。灵感似乎总是零零星星，陆陆续续到来的。任何人都不可能一笔呵成，就算再厉害的程序员，也需要经过一段时间，才能发现最简单优雅的写法。有时候你反复提炼一段代码，觉得到了顶峰，没法再改进了，可是过了几个月再回头来看，又发现好多可以改进和简化的地方。这跟写文章一模一样，回头看几个月或者几年前写的东西，你总能发现一些改进。</p>
@@ -514,7 +520,7 @@
 <li>先写出可用的代码，反复推敲，再考虑是否需要重用的问题。</li>
 <li>先写出可用，简单，明显没有bug的代码，再考虑测试的问题。</li>
 </ol>
-
+</the>
       
     </div>
     
