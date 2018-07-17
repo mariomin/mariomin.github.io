@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="闵晨" />
+
+
+
+<meta name="description" content="需求众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转1234567@Controllerpublic class ReturnLinkController &amp;#123;    @RequestMapping(value=&amp;quot;/returnB.do&amp;quot;)    pu">
+<meta name="keywords" content="Spring MVC,小技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="控制器与URL映射的请求过滤及最精确匹配优先原则">
+<meta property="og:url" content="www.fly-mc.com/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/index.html">
+<meta property="og:site_name" content="闵晨的博客">
+<meta property="og:description" content="需求众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转1234567@Controllerpublic class ReturnLinkController &amp;#123;    @RequestMapping(value=&amp;quot;/returnB.do&amp;quot;)    pu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-17T07:36:53.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="控制器与URL映射的请求过滤及最精确匹配优先原则">
+<meta name="twitter:description" content="需求众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转1234567@Controllerpublic class ReturnLinkController &amp;#123;    @RequestMapping(value=&amp;quot;/returnB.do&amp;quot;)    pu">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="闵晨的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>控制器与URL映射的请求过滤及最精确匹配优先原则 | 闵晨的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">闵晨</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">保持年轻，还有热泪盈眶</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/2249049702" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/mariomin" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/xiao-xiao-bi-luo" title="知乎"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">闵晨</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">闵晨</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">保持年轻，还有热泪盈眶</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2249049702" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/mariomin" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/xiao-xiao-bi-luo" title="知乎"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-控制器与URL映射的请求过滤及最精确匹配优先原则" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/" class="article-date">
+      <time datetime="2018-07-17T06:52:30.364Z" itemprop="datePublished">2018-07-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      控制器与URL映射的请求过滤及最精确匹配优先原则
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-MVC/">Spring MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小技巧/">小技巧</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class ReturnLinkController &#123;</span><br><span class="line">    @RequestMapping(value=&quot;/returnB.do&quot;)</span><br><span class="line">    public ModelAndView returnB(HttpServletRequest request) &#123;</span><br><span class="line">        return new ModelAndView(&quot;/WEB-INF/b.html&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于静态页面众多，如果按照这样的写法，要写很多很多很多个控制器去跳转，一方面工作量很大，还得去考虑URL；另一方面，很LOW…程序员要学会偷懒</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>通过适配的方式去映射，简单来说请求过滤。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class ReturnLinkController &#123;</span><br><span class="line">    @RequestMapping(value=&quot;/&#123;textUrlPart:.*&#125;.html&quot;)</span><br><span class="line">    public ModelAndView index(HttpServletRequest request,@PathVariable String textUrlPart) &#123;</span><br><span class="line">        return new ModelAndView(&quot;/WEB-INF/&quot;+ textUrlPart +&quot;.html&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>想要如此实现，需要保证URL参数与跳转的静态页面文件名一致。</p>
+<p>在这样的情况下，会出现一个模糊不清的问题…<br>如果进行适配的URL已存在，那到底会走哪个URL映射呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class IndexController &#123;</span><br><span class="line">    @RequestMapping(value=&quot;/index.html&quot;)</span><br><span class="line">    public ModelAndView index(HttpServletRequest request) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Controller</span><br><span class="line">public class ReturnLinkController &#123;</span><br><span class="line">    @RequestMapping(value=&quot;/&#123;textUrlPart:.*&#125;.html&quot;)</span><br><span class="line">    public ModelAndView index(HttpServletRequest request,@PathVariable String textUrlPart) &#123;</span><br><span class="line">        return new ModelAndView(&quot;/WEB-INF/&quot;+ textUrlPart +&quot;.html&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如上代码，假设URL地址是index.html，经过试验证明，会执行与URL完全一致的请求，而非正则匹配的请求。那么问题来了，为什么？</p>
+<p>这就涉及到了Spring MVC中的最精确匹配优先原则。<br>一个WEB应用程序基本上都要依赖于URL与请求处理器之间的映射，Spring MVC也是一样，但Spring MVC就像Spring所作的一切一样(译者：灵活，可以配置各种东西，但是也造成了很多复杂性)，肯定不会只有一种方法来映射URL和Controller之间的关系，并且在实际上，允许你自己创建映射规则和实现，而不仅仅依赖URL映射。Spring提供了URL的映射处理，并且处理路径模式的顺序和方法并没有限定到任何的接口上。Spring MVC的默认实现org.springframework.web.servlet.handler. AbstractUrlHandlerMapping, 会以最长符合路径模式来匹配一个路径。<br>例如：给定一个请求是 /app/dir/file.jsp 并且现在存在两个路径匹配模式/**/*.jsp 和/app/dir/*.jsp, 那么，URL会匹配那个模式呢？最后的那个模式/app/dir/*.jsp，会因为最长(has more characters)被匹配的原则,它比/**/*.jsp拥有更多的字符。<br>注意的是，这个原则并没有在任何高级别的接口中指定，但却是一种实现细节。</p>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/07/17/删除map集合中value为空的key/">
+                    删除map集合中value为空的key
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/07/13/编程的智慧/">
+                    编程的智慧
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-number">1.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"控制器与URL映射的请求过滤及最精确匹配优先原则　| 闵晨的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/07/17/删除map集合中value为空的key/" title="上一篇: 删除map集合中value为空的key">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/07/13/编程的智慧/" title="下一篇: 编程的智慧">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/编辑距离算法/">编辑距离算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Tomcat生产服务器性能优化/">Tomcat生产服务器性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/删除map集合中value为空的key/">删除map集合中value为空的key</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/">控制器与URL映射的请求过滤及最精确匹配优先原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/编程的智慧/">编程的智慧</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <!--<i class="fa fa-copyright"></i>--> 
+                <!--2018 闵晨-->
+                <!--<i class="fa fa-heart animated infinite pulse"></i>-->
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
