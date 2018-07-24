@@ -15,18 +15,22 @@
 
 
 
-<meta name="description" content="12345678//删除map中value为空的keyfor (Map.Entry&amp;lt;Character, JSONArray&amp;gt; entry : allCityMap.entrySet()) &amp;#123;  System.out.println(&amp;quot;key=&amp;quot; + entry.getKey() + &amp;quot;;value=&amp;quot; + entry.getValue">
-<meta name="keywords" content="数据结构,小技巧">
+<meta name="description" content="在电商系统中，有一个对用户体验很重要的功能就是搜索功能，一般放置在首页的顶部位置。传统搜索是用户输入完关键字点击搜索按钮开始搜索。而为了提升用户体验，电商系统中的首页及重要的搜索功能都会用联想搜索，通过输入关键字去匹配，查询出与这个关键词相关的信息展示给用户，让用户去便捷搜索需要的信息。本章内容是为了对此功能进行性能优化。">
+<meta name="keywords" content="性能优化,前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="删除map集合中value为空的key">
-<meta property="og:url" content="www.fly-mc.com/2018/07/17/删除map集合中value为空的key/index.html">
+<meta property="og:title" content="模糊搜索前端性能优化方案">
+<meta property="og:url" content="www.fly-mc.com/2018/07/24/模糊搜索前端性能优化方案/index.html">
 <meta property="og:site_name" content="闵晨的博客">
-<meta property="og:description" content="12345678//删除map中value为空的keyfor (Map.Entry&amp;lt;Character, JSONArray&amp;gt; entry : allCityMap.entrySet()) &amp;#123;  System.out.println(&amp;quot;key=&amp;quot; + entry.getKey() + &amp;quot;;value=&amp;quot; + entry.getValue">
+<meta property="og:description" content="在电商系统中，有一个对用户体验很重要的功能就是搜索功能，一般放置在首页的顶部位置。传统搜索是用户输入完关键字点击搜索按钮开始搜索。而为了提升用户体验，电商系统中的首页及重要的搜索功能都会用联想搜索，通过输入关键字去匹配，查询出与这个关键词相关的信息展示给用户，让用户去便捷搜索需要的信息。本章内容是为了对此功能进行性能优化。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-17T07:31:44.459Z">
+<meta property="og:image" content="/imgs/180724/img1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mariomin/resources/master/180724/tmp1.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/mariomin/resources/master/180724/tmp2.gif">
+<meta property="og:updated_time" content="2018-07-24T10:24:26.757Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="删除map集合中value为空的key">
-<meta name="twitter:description" content="12345678//删除map中value为空的keyfor (Map.Entry&amp;lt;Character, JSONArray&amp;gt; entry : allCityMap.entrySet()) &amp;#123;  System.out.println(&amp;quot;key=&amp;quot; + entry.getKey() + &amp;quot;;value=&amp;quot; + entry.getValue">
+<meta name="twitter:title" content="模糊搜索前端性能优化方案">
+<meta name="twitter:description" content="在电商系统中，有一个对用户体验很重要的功能就是搜索功能，一般放置在首页的顶部位置。传统搜索是用户输入完关键字点击搜索按钮开始搜索。而为了提升用户体验，电商系统中的首页及重要的搜索功能都会用联想搜索，通过输入关键字去匹配，查询出与这个关键词相关的信息展示给用户，让用户去便捷搜索需要的信息。本章内容是为了对此功能进行性能优化。">
+<meta name="twitter:image" content="/imgs/180724/img1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>删除map集合中value为空的key | 闵晨的博客</title>
+<title>模糊搜索前端性能优化方案 | 闵晨的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -207,11 +211,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-删除map集合中value为空的key" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-模糊搜索前端性能优化方案" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/07/17/删除map集合中value为空的key/" class="article-date">
-      <time datetime="2018-07-17T06:56:19.887Z" itemprop="datePublished">2018-07-17</time>
+      <a href="/2018/07/24/模糊搜索前端性能优化方案/" class="article-date">
+      <time datetime="2018-07-24T08:49:10.152Z" itemprop="datePublished">2018-07-24</time>
 </a>
 
 
@@ -226,7 +230,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      删除map集合中value为空的key
+      模糊搜索前端性能优化方案
     </h1>
   
 
@@ -237,7 +241,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小技巧/">小技巧</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -247,12 +251,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//删除map中value为空的key</span><br><span class="line">for (Map.Entry&lt;Character, JSONArray&gt; entry : allCityMap.entrySet()) &#123;</span><br><span class="line">  System.out.println(&quot;key=&quot; + entry.getKey() + &quot;;value=&quot; + entry.getValue());</span><br><span class="line">  if(entry.getValue().size()==0)&#123;</span><br><span class="line">    //在遍历Map过程中不能用put/map修改和删除元素,会引发并发修改异常  </span><br><span class="line">    allCityMap.remove(entry.getKey());   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><excerpt in="" index="" |="" 首页摘要=""><a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在电商系统中，有一个对用户体验很重要的功能就是搜索功能，一般放置在首页的顶部位置。传统搜索是用户输入完关键字点击搜索按钮开始搜索。而为了提升用户体验，电商系统中的首页及重要的搜索功能都会用联想搜索，通过输入关键字去匹配，查询出与这个关键词相关的信息展示给用户，让用户去便捷搜索需要的信息。如下图所示。</p>
+<p><img src="/imgs/180724/img1.png" alt=""></p>
+<h1 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h1><p>一般后台系统中会将需要查询的数据放到elastic或solr中，在此不再过多叙述，<strong><em>但是联想搜索的前端请求处理方式严重影响着服务器的性能，特别是高并发的情况下</em></strong>。请看下图的网络请求。</p>
+<p><img src="https://raw.githubusercontent.com/mariomin/resources/master/180724/tmp1.gif" alt=""></p>
+<p>如图所示，我其实想搜索”手机”和”电脑”这个关键字，应当将文字输入完成才触发请求，或者是不间断输入多久之后触发请求。而不应该每次输入都触发请求。</p>
+<p>如下图的网络请求，可以对比下（仅供参考）。</p>
+<p><img src="https://raw.githubusercontent.com/mariomin/resources/master/180724/tmp2.gif" alt=""></p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>web端有对应的插件可以使用(比如bootstrap-typeahead.js)，如果不想使用插件可以自己写，大致思路就是当用户不间断输入一串字符时，如果停止输入的时间大于设定的时间就会触发请求。</p>
+<p>现在联想搜索的的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.hotsearchInput&quot;).bind(&apos;input propertychange&apos;, function () &#123;</span><br><span class="line">    $.getJSON(&quot;/completionWords.htm?t=&quot; + new Date().getTime(), &#123;</span><br><span class="line">            keyWords: $.trim($(this).val())</span><br><span class="line">        &#125;,</span><br><span class="line">        function (data) &#123;</span><br><span class="line">            if (data.length &gt; 0) &#123;</span><br><span class="line">                $(&quot;.ex_search ul&quot;).html(&quot;&quot;);</span><br><span class="line">                data.forEach(function (c) &#123;</span><br><span class="line">                    $(&quot;.ex_search ul&quot;).append(&apos;&lt;li class=&quot;search-item&quot;&gt;&lt;a href=&quot;javascript:;&quot; class=&quot;completion-words&quot;&gt;&apos; + c.substring(0, 46) + &apos;&lt;/a&gt;&lt;a class=&quot;del_history&quot; href=&quot;javascript:;&quot;style=&quot;display: none;&quot;&gt;删除&lt;/a&gt;&lt;/li&gt;&apos;);</span><br><span class="line">                &#125;);</span><br><span class="line">                $(&quot;.ex_search&quot;).show();</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                $(&quot;.ex_search&quot;).hide();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>改进后的代码如下（仅供参考）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var timeOut;</span><br><span class="line">$(&quot;.hotsearchInput&quot;).bind(&apos;input propertychange&apos;, function () &#123;</span><br><span class="line">    var _this = $(this);</span><br><span class="line">    if(typeof timeOut == &apos;undefined&apos;)</span><br><span class="line">    &#123;</span><br><span class="line">        timeOut = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    //清除计时器</span><br><span class="line">    clearTimeout(timeOut);</span><br><span class="line">    timeOut = setTimeout(function()&#123;</span><br><span class="line">        associateSearch(_this);</span><br><span class="line">    &#125;, 300);</span><br><span class="line">&#125;)</span><br><span class="line">function associateSearch(_this) &#123;</span><br><span class="line">    $.getJSON(&quot;$&#123;basePath&#125;/completionWords.htm?t=&quot;+new Date().getTime(), &#123;</span><br><span class="line">        keyWords: $.trim(_this.val())&#125;,</span><br><span class="line">        function (data) &#123;</span><br><span class="line">            if (data.length &gt; 0) &#123;</span><br><span class="line">                $(&quot;.ex_search ul&quot;).html(&quot;&quot;);</span><br><span class="line">                data.forEach(function(c)&#123;</span><br><span class="line">                    $(&quot;.ex_search ul&quot;).append(&apos;&lt;li class=&quot;search-item&quot;&gt;&lt;a href=&quot;javascript:;&quot; class=&quot;completion-words&quot;&gt;&apos;+ c.substring(0,46)+&apos;&lt;/a&gt;&lt;a class=&quot;del_history&quot; href=&quot;javascript:;&quot;style=&quot;display: none;&quot;&gt;删除&lt;/a&gt;&lt;/li&gt;&apos;);</span><br><span class="line">                &#125;);</span><br><span class="line">                $(&quot;.ex_search&quot;).show();</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                $(&quot;.ex_search&quot;).hide();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-<p>以上代码会报并发修改异常，正确写法应当是下面的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Map.Entry&lt;Character, JSONArray&gt;&gt; it = allCityMap.entrySet().iterator();  </span><br><span class="line">while(it.hasNext())&#123;  </span><br><span class="line">  Map.Entry&lt;Character, JSONArray&gt; entry=it.next();  </span><br><span class="line">  char key=entry.getKey();  </span><br><span class="line">  if(allCityMap.get(key).size()==0)&#123;  </span><br><span class="line">    it.remove();  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></the>
       
     </div>
     
@@ -263,16 +272,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/07/17/Tomcat生产服务器性能优化/">
-                    Tomcat生产服务器性能优化
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/">
-                    控制器与URL映射的请求过滤及最精确匹配优先原则
+                <a href="/2018/07/17/编辑距离算法/">
+                    编辑距离算法
                 </a>
             </div>
         
@@ -284,7 +287,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不足"><span class="toc-number">2.</span> <span class="toc-text">不足</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决方案"><span class="toc-number">3.</span> <span class="toc-text">解决方案</span></a></li></ol>
         
     </div>
     <style>
@@ -318,7 +321,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"删除map集合中value为空的key　| 闵晨的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"模糊搜索前端性能优化方案　| 闵晨的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -338,15 +341,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/07/17/Tomcat生产服务器性能优化/" title="上一篇: Tomcat生产服务器性能优化">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/" title="下一篇: 控制器与URL映射的请求过滤及最精确匹配优先原则">
+            <a href="/2018/07/17/编辑距离算法/" title="下一篇: 编辑距离算法">
                 <i class="fa fa-angle-right"></i>
             </a>
         

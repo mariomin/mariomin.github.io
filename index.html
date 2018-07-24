@@ -209,6 +209,70 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-模糊搜索前端性能优化方案" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/24/模糊搜索前端性能优化方案/" class="article-date">
+      <time datetime="2018-07-24T08:49:10.152Z" itemprop="datePublished">2018-07-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/24/模糊搜索前端性能优化方案/">模糊搜索前端性能优化方案</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              在电商系统中，有一个对用户体验很重要的功能就是搜索功能，一般放置在首页的顶部位置。传统搜索是用户输入完关键字点击搜索按钮开始搜索。而为了提升用户体验，电商系统中的首页及重要的搜索功能都会用联想搜索，通过输入关键字去匹配，查询出与这个关键词相关的信息展示给用户，让用户去便捷搜索需要的信息。本章内容是为了对此功能进行性能优化。
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2018/07/24/模糊搜索前端性能优化方案/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-编辑距离算法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -238,7 +302,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。</p>
+              <p>编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。</p>
 <p><excerpt in="" index="" |="" 首页摘要="">
           
       
@@ -303,8 +367,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>考虑一下这种场景，你开发了一个应用，它有十分优秀的布局设计，最新的特性以及其它的优秀特点。但是在性能这方面欠缺，不管这个应用如何都会遭到客户拒绝。客户总是期望它们的应用应该有更好的性能。如果你在产品中使用了Tomcat服务器，那么这篇文章就会给你几方面来提升Tomcat服务器的性能。感谢<br><a href="https://www.itworld.com/article/2764170/networking/tomcat-performance-tuning-tips.html" target="_blank" rel="noopener">ITWorld article</a><br>给本文提供资源。经过沉思我已经知道了和早期版本相比最新的Tomcat提供更好的性能和稳定性。所以一直使用最新的Tomcat版本。现在本文使用下面几步来提高Tomcat服务器的性能。</p>
-<p><excerpt in="" index="" |="" 首页摘要="">
+              考虑一下这种场景，你开发了一个应用，它有十分优秀的布局设计，最新的特性以及其它的优秀特点。但是在性能这方面欠缺，不管这个应用如何都会遭到客户拒绝。客户总是期望它们的应用应该有更好的性能。如果你在产品中使用了Tomcat服务器，那么这篇文章就会给你几方面来提升Tomcat服务器的性能。现在本文使用下面几步来提高Tomcat服务器的性能。
           
       
     </div>
@@ -433,9 +496,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class ReturnLinkController &#123;</span><br><span class="line">    @RequestMapping(value=&quot;/returnB.do&quot;)</span><br><span class="line">    public ModelAndView returnB(HttpServletRequest request) &#123;</span><br><span class="line">        return new ModelAndView(&quot;/WEB-INF/b.html&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由于静态页面众多，如果按照这样的写法，要写很多很多很多个控制器去跳转，一方面工作量很大，还得去考虑URL；另一方面，很LOW…程序员要学会偷懒</p>
-<p><excerpt in="" index="" |="" 首页摘要="">
+              项目中众多静态页面间的跳转相互访问，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。由于静态页面众多，如果每个页面都写一个控制器去跳转，一方面工作量很大，还得去考虑URL命名这让我深恶痛绝的事；另一方面，代码要优雅简洁，这样的写法维护麻烦，而且很LOW...程序员要学会偷懒，本文就是教你如何偷懒。
           
       
     </div>

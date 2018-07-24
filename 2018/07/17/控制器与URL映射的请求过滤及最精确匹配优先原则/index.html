@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="需求众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转1234567@Controllerpublic class ReturnLinkController &amp;#123;    @RequestMapping(value=&amp;quot;/returnB.do&amp;quot;)    pu">
-<meta name="keywords" content="Spring MVC,小技巧">
+<meta name="description" content="项目中众多静态页面间的跳转相互访问，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。由于静态页面众多，如果每个页面都写一个控制器去跳转，一方面工作量很大，还得去考虑URL命名这让我深恶痛绝的事；另一方面，代码要优雅简洁，这样的写法维护麻烦，而且很LOW...程序员要学会偷懒，本文就是教你如何偷懒。">
+<meta name="keywords" content="小技巧,Spring MVC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="控制器与URL映射的请求过滤及最精确匹配优先原则">
 <meta property="og:url" content="www.fly-mc.com/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/index.html">
 <meta property="og:site_name" content="闵晨的博客">
-<meta property="og:description" content="需求众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转1234567@Controllerpublic class ReturnLinkController &amp;#123;    @RequestMapping(value=&amp;quot;/returnB.do&amp;quot;)    pu">
+<meta property="og:description" content="项目中众多静态页面间的跳转相互访问，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。由于静态页面众多，如果每个页面都写一个控制器去跳转，一方面工作量很大，还得去考虑URL命名这让我深恶痛绝的事；另一方面，代码要优雅简洁，这样的写法维护麻烦，而且很LOW...程序员要学会偷懒，本文就是教你如何偷懒。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-17T07:36:53.291Z">
+<meta property="og:updated_time" content="2018-07-24T10:16:34.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="控制器与URL映射的请求过滤及最精确匹配优先原则">
-<meta name="twitter:description" content="需求众多静态页面间的跳转，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。例：从a.html跳转到b.html，通过returnB.do去跳转1234567@Controllerpublic class ReturnLinkController &amp;#123;    @RequestMapping(value=&amp;quot;/returnB.do&amp;quot;)    pu">
+<meta name="twitter:description" content="项目中众多静态页面间的跳转相互访问，由于文件处于WEB-INF文件夹下无法直接访问，必须通过URL映射来进行跳转。由于静态页面众多，如果每个页面都写一个控制器去跳转，一方面工作量很大，还得去考虑URL命名这让我深恶痛绝的事；另一方面，代码要优雅简洁，这样的写法维护麻烦，而且很LOW...程序员要学会偷懒，本文就是教你如何偷懒。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -357,7 +357,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/编辑距离算法/">编辑距离算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Tomcat生产服务器性能优化/">Tomcat生产服务器性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/删除map集合中value为空的key/">删除map集合中value为空的key</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/">控制器与URL映射的请求过滤及最精确匹配优先原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/编程的智慧/">编程的智慧</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/模糊搜索前端性能优化方案/">模糊搜索前端性能优化方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/编辑距离算法/">编辑距离算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Tomcat生产服务器性能优化/">Tomcat生产服务器性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/删除map集合中value为空的key/">删除map集合中value为空的key</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/">控制器与URL映射的请求过滤及最精确匹配优先原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/编程的智慧/">编程的智慧</a></li></ul>
 
 
 

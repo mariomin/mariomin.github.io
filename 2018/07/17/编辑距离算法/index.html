@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。">
+<meta name="description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。">
 <meta name="keywords" content="算法,相似度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编辑距离算法">
 <meta property="og:url" content="www.fly-mc.com/2018/07/17/编辑距离算法/index.html">
 <meta property="og:site_name" content="闵晨的博客">
-<meta property="og:description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。">
+<meta property="og:description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-17T07:33:13.667Z">
+<meta property="og:updated_time" content="2018-07-24T10:17:17.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编辑距离算法">
-<meta name="twitter:description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。">
+<meta name="twitter:description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -247,7 +247,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。</p>
+        <p>编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
@@ -261,6 +261,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/07/24/模糊搜索前端性能优化方案/">
+                    模糊搜索前端性能优化方案
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -331,7 +337,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/07/24/模糊搜索前端性能优化方案/" title="上一篇: 模糊搜索前端性能优化方案">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -343,7 +351,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/编辑距离算法/">编辑距离算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Tomcat生产服务器性能优化/">Tomcat生产服务器性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/删除map集合中value为空的key/">删除map集合中value为空的key</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/">控制器与URL映射的请求过滤及最精确匹配优先原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/编程的智慧/">编程的智慧</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/模糊搜索前端性能优化方案/">模糊搜索前端性能优化方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/编辑距离算法/">编辑距离算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Tomcat生产服务器性能优化/">Tomcat生产服务器性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/删除map集合中value为空的key/">删除map集合中value为空的key</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/控制器与URL映射的请求过滤及最精确匹配优先原则/">控制器与URL映射的请求过滤及最精确匹配优先原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/编程的智慧/">编程的智慧</a></li></ul>
 
 
 
