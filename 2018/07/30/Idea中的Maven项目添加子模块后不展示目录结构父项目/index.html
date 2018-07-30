@@ -15,18 +15,27 @@
 
 
 
-<meta name="description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。">
-<meta name="keywords" content="算法,相似度">
+<meta name="description" content="项目踩坑：Idea中的Maven项目在添加子模块后目录结构与原先不一致，不展示Maven项目父级模块。">
+<meta name="keywords" content="Maven">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编辑距离算法">
-<meta property="og:url" content="www.fly-mc.com/2018/07/17/编辑距离算法/index.html">
+<meta property="og:title" content="Idea中的Maven项目添加子模块后不展示目录结构父项目">
+<meta property="og:url" content="www.fly-mc.com/2018/07/30/Idea中的Maven项目添加子模块后不展示目录结构父项目/index.html">
 <meta property="og:site_name" content="闵晨的博客">
-<meta property="og:description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。">
+<meta property="og:description" content="项目踩坑：Idea中的Maven项目在添加子模块后目录结构与原先不一致，不展示Maven项目父级模块。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-24T10:17:17.581Z">
+<meta property="og:image" content="/imgs/180730/001.png">
+<meta property="og:image" content="/imgs/180730/002.png">
+<meta property="og:image" content="/imgs/180730/003.png">
+<meta property="og:image" content="/imgs/180730/004.png">
+<meta property="og:image" content="/imgs/180730/005.png">
+<meta property="og:image" content="/imgs/180730/006.png">
+<meta property="og:image" content="/imgs/180730/007.png">
+<meta property="og:image" content="/imgs/180730/008.png">
+<meta property="og:updated_time" content="2018-07-30T09:51:46.184Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编辑距离算法">
-<meta name="twitter:description" content="编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。">
+<meta name="twitter:title" content="Idea中的Maven项目添加子模块后不展示目录结构父项目">
+<meta name="twitter:description" content="项目踩坑：Idea中的Maven项目在添加子模块后目录结构与原先不一致，不展示Maven项目父级模块。">
+<meta name="twitter:image" content="/imgs/180730/001.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +67,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>编辑距离算法 | 闵晨的博客</title>
+<title>Idea中的Maven项目添加子模块后不展示目录结构父项目 | 闵晨的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -207,11 +216,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-编辑距离算法" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Idea中的Maven项目添加子模块后不展示目录结构父项目" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/07/17/编辑距离算法/" class="article-date">
-      <time datetime="2018-07-17T06:59:40.695Z" itemprop="datePublished">2018-07-17</time>
+      <a href="/2018/07/30/Idea中的Maven项目添加子模块后不展示目录结构父项目/" class="article-date">
+      <time datetime="2018-07-30T09:44:19.074Z" itemprop="datePublished">2018-07-30</time>
 </a>
 
 
@@ -226,7 +235,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      编辑距离算法
+      Idea中的Maven项目添加子模块后不展示目录结构父项目
     </h1>
   
 
@@ -234,10 +243,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/项目踩坑/">项目踩坑</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/相似度/">相似度</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -247,11 +260,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。本文就是编辑距离算法的java源码。</p>
-<p><excerpt in="" index="" |="" 首页摘要=""><a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
+        <h2 id="新增子模块"><a href="#新增子模块" class="headerlink" title="新增子模块"></a>新增子模块</h2><ol>
+<li>右键“父项目”–&gt;选择“New”–&gt;选择“modules”<br><img src="/imgs/180730/001.png" alt=""> </li>
+<li>弹窗中选择“Maven”–&gt;点击“Next”<br><img src="/imgs/180730/002.png" alt=""> </li>
+<li>填写“ArtifactId”–&gt;点击“Next”<br><img src="/imgs/180730/003.png" alt=""> </li>
+<li>填写模块路径–&gt;点击“Finish”<br><img src="/imgs/180730/004.png" alt=""><br>可能有的情况下我们会碰到这样的问题，Event Log中会红色显示 这样的信息：Failed to create a Maven project:’F:/workprogram/strategypattern/pom.xml’ already exists in VFS，左边也没有看到我们需要的子模块被创建出来，为什么呢？错误原因是新建的模块在父项目文件下生成，idea检测到父类的imi文件已经存在，就报错了，<strong>所以想要创建成功就需要在父路径下再创建一级目录</strong></li>
+</ol>
+<hr>
+<p>子模块创建成功，但是idea页面左侧的project树目录结构发生了错误，未展示父项目<br><img src="/imgs/180730/005.png" alt="">  <img src="/imgs/180730/006.png" alt=""><br>左图是正常的，右图是添加模块后的。<br>通过查看idea的maven projects，发现父项目模块变成灰色（如下图，无视红色波浪线）<br><img src="/imgs/180730/007.png" alt=""><br>猜想造成这个的原因可能是忽略了maven模块，尝试如下解决方法：<br><img src="/imgs/180730/008.png" alt=""><br>在idea中maven的setting中找到ignored files,发现右边的面板中是否将变灰的maven模块忽略了，于是将勾去了，点击“OK”问题解决。</p>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public static int editDistance(String s, String t) &#123;</span><br><span class="line">    if (s == null || t == null) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;字符串不能是空&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    int n = s.length(); // 源字符串的长度</span><br><span class="line">    int m = t.length(); // 目标字符串的长度</span><br><span class="line">    if (n == 0) &#123;</span><br><span class="line">        return m;</span><br><span class="line">    &#125; else if (m == 0) &#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    int p[] = new int[n + 1]; // 前一个水平的代价数组</span><br><span class="line">    int d[] = new int[n + 1]; // 水平的代价数组</span><br><span class="line">    int _d[]; // 用来帮助交换p和d的占位符</span><br><span class="line">    // 字符串s和t的索引</span><br><span class="line">    int i; // 遍历字符串s</span><br><span class="line">    int j; // 遍历字符串t</span><br><span class="line">    char t_j; // t的第j个字符</span><br><span class="line">    int cost; // 代价</span><br><span class="line">    for (i = 0; i &lt;= n; i++) &#123;</span><br><span class="line">        p[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    for (j = 1; j &lt;= m; j++) &#123;</span><br><span class="line">        t_j = t.charAt(j - 1);</span><br><span class="line">        d[0] = j;</span><br><span class="line">        for (i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            cost = s.charAt(i - 1) == t_j ? 0 : 1;</span><br><span class="line">            // left+1和top+1，以及 左上对角+cost单元的最小值</span><br><span class="line">            d[i] = Math.min(Math.min(d[i - 1] + 1, p[i] + 1), p[i - 1] + cost);</span><br><span class="line">        &#125;</span><br><span class="line">        // 把当前距离计数器行变成前一行的距离计数器</span><br><span class="line">        _d = p; // 前一行计数器没用了，重用作当前距离计数器行</span><br><span class="line">        p = d;</span><br><span class="line">        d = _d;</span><br><span class="line">    &#125;</span><br><span class="line">    // 上面循环中的最后一次动作交换了d和p，因此p现在包含最近的代价计数</span><br><span class="line">    return p[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static double getSim(String str1, String str2) &#123;</span><br><span class="line">    int distance = editDistance(str1, str2);</span><br><span class="line">    double sim = 1 - (double) distance / Math.max(str1.length(), str2.length());</span><br><span class="line">    if (sim &lt;= 0) &#123;</span><br><span class="line">        sim = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return sim;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></the>
       
     </div>
     
@@ -262,16 +279,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/07/24/模糊搜索前端性能优化方案/">
-                    模糊搜索前端性能优化方案
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/07/17/Tomcat生产服务器性能优化/">
-                    Tomcat生产服务器性能优化
+                <a href="/2018/07/27/Java集合总体大纲/">
+                    Java集合总体大纲
                 </a>
             </div>
         
@@ -283,7 +294,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#新增子模块"><span class="toc-number">1.</span> <span class="toc-text">新增子模块</span></a></li></ol>
         
     </div>
     <style>
@@ -317,7 +328,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"编辑距离算法　| 闵晨的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Idea中的Maven项目添加子模块后不展示目录结构父项目　| 闵晨的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -337,15 +348,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/07/24/模糊搜索前端性能优化方案/" title="上一篇: 模糊搜索前端性能优化方案">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/07/17/Tomcat生产服务器性能优化/" title="下一篇: Tomcat生产服务器性能优化">
+            <a href="/2018/07/27/Java集合总体大纲/" title="下一篇: Java集合总体大纲">
                 <i class="fa fa-angle-right"></i>
             </a>
         
