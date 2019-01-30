@@ -15,27 +15,18 @@
 
 
 
-<meta name="description" content="项目踩坑：Idea中的Maven项目在添加子模块后目录结构与原先不一致，不展示Maven项目父级模块。">
-<meta name="keywords" content="Maven">
+<meta name="description" content="一般使用springboot都会引用springboot作为parent，在实际项目中web只是系统模块的一个子集。当然你可以做两个项目来管理，一个项目用来做各种支持包，一个项目专门做web，但是这样不仅调试不方便而且将面临更多的隐患，比如发布前的版本控制问题等。   所以最优方案已定是将Springboot作为一个Maven项目的子模块来处理。">
+<meta name="keywords" content="前端,性能优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Idea中的Maven项目添加子模块后不展示目录结构父项目">
-<meta property="og:url" content="www.fly-mc.com/2018/07/30/Idea中的Maven项目添加子模块后不展示目录结构父项目/index.html">
+<meta property="og:title" content="使用SpringBoot作为Maven构建的项目的一个子模块">
+<meta property="og:url" content="www.fly-mc.com/2019/01/30/使用SpringBoot作为Maven构建的项目的一个子模块/index.html">
 <meta property="og:site_name" content="闵晨的博客">
-<meta property="og:description" content="项目踩坑：Idea中的Maven项目在添加子模块后目录结构与原先不一致，不展示Maven项目父级模块。">
+<meta property="og:description" content="一般使用springboot都会引用springboot作为parent，在实际项目中web只是系统模块的一个子集。当然你可以做两个项目来管理，一个项目用来做各种支持包，一个项目专门做web，但是这样不仅调试不方便而且将面临更多的隐患，比如发布前的版本控制问题等。   所以最优方案已定是将Springboot作为一个Maven项目的子模块来处理。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/imgs/180730/001.png">
-<meta property="og:image" content="/imgs/180730/002.png">
-<meta property="og:image" content="/imgs/180730/003.png">
-<meta property="og:image" content="/imgs/180730/004.png">
-<meta property="og:image" content="/imgs/180730/005.png">
-<meta property="og:image" content="/imgs/180730/006.png">
-<meta property="og:image" content="/imgs/180730/007.png">
-<meta property="og:image" content="/imgs/180730/008.png">
-<meta property="og:updated_time" content="2018-07-30T09:51:46.184Z">
+<meta property="og:updated_time" content="2019-01-30T02:56:38.023Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Idea中的Maven项目添加子模块后不展示目录结构父项目">
-<meta name="twitter:description" content="项目踩坑：Idea中的Maven项目在添加子模块后目录结构与原先不一致，不展示Maven项目父级模块。">
-<meta name="twitter:image" content="/imgs/180730/001.png">
+<meta name="twitter:title" content="使用SpringBoot作为Maven构建的项目的一个子模块">
+<meta name="twitter:description" content="一般使用springboot都会引用springboot作为parent，在实际项目中web只是系统模块的一个子集。当然你可以做两个项目来管理，一个项目用来做各种支持包，一个项目专门做web，但是这样不仅调试不方便而且将面临更多的隐患，比如发布前的版本控制问题等。   所以最优方案已定是将Springboot作为一个Maven项目的子模块来处理。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -67,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Idea中的Maven项目添加子模块后不展示目录结构父项目 | 闵晨的博客</title>
+<title>使用SpringBoot作为Maven构建的项目的一个子模块 | 闵晨的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -216,11 +207,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Idea中的Maven项目添加子模块后不展示目录结构父项目" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-使用SpringBoot作为Maven构建的项目的一个子模块" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/07/30/Idea中的Maven项目添加子模块后不展示目录结构父项目/" class="article-date">
-      <time datetime="2018-07-30T09:44:19.074Z" itemprop="datePublished">2018-07-30</time>
+      <a href="/2019/01/30/使用SpringBoot作为Maven构建的项目的一个子模块/" class="article-date">
+      <time datetime="2019-01-30T02:55:09.355Z" itemprop="datePublished">2019-01-30</time>
 </a>
 
 
@@ -235,7 +226,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Idea中的Maven项目添加子模块后不展示目录结构父项目
+      使用SpringBoot作为Maven构建的项目的一个子模块
     </h1>
   
 
@@ -243,14 +234,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/项目踩坑/">项目踩坑</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -260,15 +247,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="新增子模块"><a href="#新增子模块" class="headerlink" title="新增子模块"></a>新增子模块</h2><ol>
-<li>右键“父项目”–&gt;选择“New”–&gt;选择“modules”<br><img src="/imgs/180730/001.png" alt=""> </li>
-<li>弹窗中选择“Maven”–&gt;点击“Next”<br><img src="/imgs/180730/002.png" alt=""> </li>
-<li>填写“ArtifactId”–&gt;点击“Next”<br><img src="/imgs/180730/003.png" alt=""> </li>
-<li>填写模块路径–&gt;点击“Finish”<br><img src="/imgs/180730/004.png" alt=""><br>可能有的情况下我们会碰到这样的问题，Event Log中会红色显示 这样的信息：Failed to create a Maven project:’F:/workprogram/strategypattern/pom.xml’ already exists in VFS，左边也没有看到我们需要的子模块被创建出来，为什么呢？错误原因是新建的模块在父项目文件下生成，idea检测到父类的imi文件已经存在，就报错了，<strong>所以想要创建成功就需要在父路径下再创建一级目录</strong></li>
-</ol>
-<hr>
-<p>子模块创建成功，但是idea页面左侧的project树目录结构发生了错误，未展示父项目<br><img src="/imgs/180730/005.png" alt="">  <img src="/imgs/180730/006.png" alt=""><br>左图是正常的，右图是添加模块后的。<br>通过查看idea的maven projects，发现父项目模块变成灰色（如下图，无视红色波浪线）<br><img src="/imgs/180730/007.png" alt=""><br>猜想造成这个的原因可能是忽略了maven模块，尝试如下解决方法：<br><img src="/imgs/180730/008.png" alt=""><br>在idea中maven的setting中找到ignored files,发现右边的面板中是否将变灰的maven模块忽略了，于是将勾去了，点击“OK”问题解决。</p>
-
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>一般使用springboot都会引用springboot作为parent，在实际项目中web只是系统模块的一个子集。当然你可以做两个项目来管理，一个项目用来做各种支持包，一个项目专门做web，但是这样不仅调试不方便而且将面临更多的隐患，比如发布前的版本控制问题等。<br>所以最优方案已定是将Springboot作为一个Maven项目的子模块来处理。</p>
+<h2 id="先修改一下我们项目的pom-xml"><a href="#先修改一下我们项目的pom-xml" class="headerlink" title="先修改一下我们项目的pom.xml"></a>先修改一下我们项目的pom.xml</h2><p>也就是在我们项目的pom中，也就是其他子项目的parent中增加全部的sprintboot的引用。注意一下这段是整段新增的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;</span><br><span class="line">            &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">            &lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">   &lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="在web子模块中增加springboot引用"><a href="#在web子模块中增加springboot引用" class="headerlink" title="在web子模块中增加springboot引用"></a>在web子模块中增加springboot引用</h1><p>在我们子模块的pom中像使用其他包一样加入springboot，注意dependencies可能是原有的，你只要增加dependency部分即可。<br>如果是一个空项目可以像下面这样引用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="需要一个server来启动web"><a href="#需要一个server来启动web" class="headerlink" title="需要一个server来启动web"></a>需要一个server来启动web</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class clientServer &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(clientServer.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -280,15 +262,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/01/30/Java发送html格式的邮件踩坑/">
-                    Java发送html格式的邮件踩坑
+                <a href="/2019/01/30/JS小数加减结果错误的原因/">
+                    js小数加减结果错误的原因
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/07/27/Java集合总体大纲/">
-                    Java集合总体大纲
+                <a href="/2019/01/30/Java发送html格式的邮件踩坑/">
+                    Java发送html格式的邮件踩坑
                 </a>
             </div>
         
@@ -300,7 +282,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#新增子模块"><span class="toc-number">1.</span> <span class="toc-text">新增子模块</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#先修改一下我们项目的pom-xml"><span class="toc-number">1.1.</span> <span class="toc-text">先修改一下我们项目的pom.xml</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在web子模块中增加springboot引用"><span class="toc-number">2.</span> <span class="toc-text">在web子模块中增加springboot引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#需要一个server来启动web"><span class="toc-number">3.</span> <span class="toc-text">需要一个server来启动web</span></a></li></ol>
         
     </div>
     <style>
@@ -334,7 +316,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Idea中的Maven项目添加子模块后不展示目录结构父项目　| 闵晨的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"使用SpringBoot作为Maven构建的项目的一个子模块　| 闵晨的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -354,7 +336,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/01/30/Java发送html格式的邮件踩坑/" title="上一篇: Java发送html格式的邮件踩坑">
+            <a href="/2019/01/30/JS小数加减结果错误的原因/" title="上一篇: js小数加减结果错误的原因">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -362,7 +344,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/07/27/Java集合总体大纲/" title="下一篇: Java集合总体大纲">
+            <a href="/2019/01/30/Java发送html格式的邮件踩坑/" title="下一篇: Java发送html格式的邮件踩坑">
                 <i class="fa fa-angle-right"></i>
             </a>
         
