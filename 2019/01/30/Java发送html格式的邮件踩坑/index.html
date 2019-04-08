@@ -26,7 +26,7 @@
 <meta property="og:image" content="/imgs/181105/001.png">
 <meta property="og:image" content="/imgs/181105/002.png">
 <meta property="og:image" content="/imgs/181105/003.png">
-<meta property="og:updated_time" content="2019-01-30T02:52:58.771Z">
+<meta property="og:updated_time" content="2019-01-30T06:45:47.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java发送html格式的邮件踩坑">
 <meta name="twitter:description" content="项目踩坑：Java发送html格式的邮件踩坑">
@@ -257,16 +257,15 @@
           
         <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>用户提交订单，在收银台选择银联企业支付的付款方式后弹窗提示，有直接支付和通知财务按钮，其中的通知财务需要发送邮件至用户已维护的邮箱中。下图是弹窗内容：<br><img src="/imgs/181105/001.png" alt=""><br>邮件内容模板如下图所示：<br><img src="/imgs/181105/002.png" alt="">  </p>
 <h1 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h1><p>由于邮件内容中包含表格，无法使用发送纯文本的方式，所以只能考虑发送html格式的邮件，html代码如下方所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;style type=&apos;text/css&apos;&gt;</span><br><span class="line">  th,td &#123; text-align: center;padding: 10px 30px; border: 1px solid #ddd;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body style=&quot;width: 800px; margin: auto;&quot;&gt;</span><br><span class="line">  &lt;p&gt;财务组：&lt;/p&gt;</span><br><span class="line">      &lt;p style=&apos;margin-left: 35px;&apos;&gt;于xx年xx月xx日  00:00:00，生成1笔订单，请点击以下链接完成支付:&lt;/p&gt;</span><br><span class="line">      &lt;p style=&apos;margin-left: 35px;&apos;&gt;&lt;a href=&quot;&quot;&gt;http://pc.s2btest.kstore.com/order-list&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;订单详细内容：&lt;/p&gt;</span><br><span class="line">  &lt;table style=&quot;border-collapse: collapse; font-size: 13px;&quot;&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">          &lt;td&gt;订单号：O201811051000001839&lt;/td&gt;</span><br><span class="line">          &lt;td&gt;下单时间：2018年11月05日 10:00:00&lt;/td&gt;</span><br><span class="line">          &lt;td&gt;订单金额：520.00&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;th&gt;商品名称&lt;/th&gt;&lt;th&gt;数量&lt;/th&gt;&lt;th&gt;&lt;/th&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">      &lt;td&gt;供应商商品名1&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">&lt;/tbody&gt;</span><br><span class="line">  &lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<h1 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h1><p>通过Java发送邮件的相关代码网上很多不再赘述<br>开发完成后进行测试，FoxMail的PC客户端、邮箱大师移动端都能收到邮件格式也正确，但是移交测试的时候发现在邮箱网站上的邮件样式中表格无边框，如下图所示：<br><img src="/imgs/181105/003.png" alt=""><br>后来查资料，发现HTML邮件不是独立的HOST在本站的页面，编写HTML邮件与编写HTML页面有很大的不同，因为各面向网民的主流邮箱都或多或少的会对它们接收到的HTML邮件在后台进行过滤。基于邮件安全性的考虑，JS代码是被严格过滤掉的，包括所有的事件监听属性，如onclick、onmouseover。不仅如此，CSS代码也会被部分过滤。<br>html中无法使用css, js。你发送一个<div>片断就好了，不用写整个html页面，因为即使写了，邮件客户端也会删除body之外（包括<body>这个标签）的内容，只留下<body>标签内部的东西。</body></body></div></p>
+<h1 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h1><p>通过Java发送邮件的相关代码网上很多不再赘述<br>开发完成后进行测试，FoxMail的PC客户端、邮箱大师移动端都能收到邮件格式也正确，但是移交测试的时候发现在邮箱网站上的邮件样式中表格无边框，如下图所示：<br><img src="/imgs/181105/003.png" alt=""><br>后来查资料，发现HTML邮件不是独立的HOST在本站的页面，编写HTML邮件与编写HTML页面有很大的不同，因为各面向网民的主流邮箱都或多或少的会对它们接收到的HTML邮件在后台进行过滤。基于邮件安全性的考虑，JS代码是被严格过滤掉的，包括所有的事件监听属性，如onclick、onmouseover。不仅如此，CSS代码也会被部分过滤。<br>html中无法使用css, js。你发送一个\&lt;div>片断就好了，不用写整个html页面，因为即使写了，邮件客户端也会删除body之外（包括\&lt;body>这个标签）的内容，只留下\&lt;body>标签内部的东西。</p>
 <p>下面我列出一些编写原则：  </p>
 <ol>
-<li>全局规则之一，不要写<style>标签、不要写class，所有CSS都用style属性，什么元素需要什么样式就用style写内联的CSS。  </li>
+<li>全局规则之一，不要写\&lt;style>标签、不要写class，所有CSS都用style属性，什么元素需要什么样式就用style写内联的CSS。  </li>
 <li>全局规则之二，少用图片，邮箱不会过滤你的img标签，但是系统往往会默认不载入陌生来信的图片，图片上加上alt。  </li>
 <li>不要在style里面写float、position这些style，因为会被过滤。用table实现左右布局或者更复杂的布局。</li>
-<li>style内容里面background可以设置color，但是img会被过滤，就是说不能通过CSS来设置背景图片了。要给一个单元格加一个背景，必须这样写：&lt;td background=”<a href="http://xx.xx.com/images/common/logo.gif”&gt;">http://xx.xx.com/images/common/logo.gif”&gt;</a></td>
-</li>
+<li>style内容里面background可以设置color，但是img会被过滤，就是说不能通过CSS来设置背景图片了。要给一个单元格加一个背景，必须这样写：<br>\&lt;td background=”<a href="http://xx.xx.com/images/common/logo.gif”&gt;\" target="_blank" rel="noopener">http://xx.xx.com/images/common/logo.gif”&gt;\</a>&lt;\/td></li>
 </ol>
-</style></li></ol>
+
       
     </div>
     
